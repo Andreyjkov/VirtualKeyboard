@@ -34,6 +34,14 @@ class Button {
   }
 }
 
+const textarea = document.createElement("textarea")
+const renderTextarea = () => {
+    textarea.id = "textarea";
+    textarea.setAttribute("rows", "10");
+    return textarea;
+}
+renderTextarea()
+
 
 const renderKeyBoard = () => {
 //   keyBoard.remove();
@@ -56,6 +64,7 @@ renderKeyBoard()
 
 const init =() => {
     document.body.appendChild(main);
+    main.appendChild(textarea)
     main.appendChild(keyBoard)
     
 }

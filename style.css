@@ -1,14 +1,31 @@
 main {
-  border: 2px solid black;
+  /* border: 2px solid black; */
   max-width: 800px;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
 }
+
+#textarea {
+    /* display: flex;
+  width: 790px;
+  margin: 0 auto; */
+  /* font-size: 40px; */
+  display: block;
+  width: 770px;
+  /* height: 200px; */
+  margin: 10px auto 10px;
+  padding: 10px;
+  font-size: 18px;
+  color: #444444;
+}
+
 section {
   display: flex;
   flex-direction: column;
-  margin: 0px 5px;
+  margin: 5px;
+  border: 2px solid black;
+  max-width: 800px;
 }
 
 .row {
