@@ -1,4 +1,42 @@
-/* #keyboard {
-    border: 2px solid green;
-    border-radius: 5px;
-   } */
+main {
+  border: 2px solid black;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+section {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 5px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 800px;
+  margin: 0 0;
+}
+.btn {
+  border-radius: 8px;
+  border: 1.2px solid black;
+  margin: 2px;
+  padding: 10px 5px; 
+  flex: 1;
+  text-align: center;
+  background-color: rgb(0, 0, 0);
+  color: #ffff;
+  list-style-type: none;
+}
+
+.Space {
+    min-width: 300px;
+}
+
+
+
+.none {
+  display: none;
+}
+

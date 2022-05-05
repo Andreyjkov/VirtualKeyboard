@@ -1,4 +1,5 @@
-const keyBase = {
+
+export const keyBase = {
   eng: [
     [
       // row 0
