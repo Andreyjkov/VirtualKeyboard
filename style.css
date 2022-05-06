@@ -67,6 +67,12 @@ section {
     animation-fill-mode: forwards;
 }
 
+.activeSpecial {
+  animation: push;
+  animation-duration: 0.2s;
+  animation-fill-mode: forwards;
+}
+
 .lowerCase {
   display: block;
   color: rgb(255, 37, 37);
