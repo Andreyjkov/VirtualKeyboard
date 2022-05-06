@@ -11,6 +11,7 @@ main {
   width: 790px;
   margin: 0 auto; */
   /* font-size: 40px; */
+  border: 2px solid black;
   display: block;
   width: 770px;
   /* height: 200px; */
@@ -26,6 +27,7 @@ section {
   margin: 5px;
   border: 2px solid black;
   max-width: 800px;
+  /* background-color: aqua; */
 }
 
 .row {
@@ -34,6 +36,7 @@ section {
   justify-content: space-between;
   max-width: 800px;
   margin: 0 0;
+  padding: 2px;
 }
 .btn {
   border-radius: 8px;
@@ -42,18 +45,64 @@ section {
   padding: 10px 5px; 
   flex: 1;
   text-align: center;
-  background-color: rgb(0, 0, 0);
+  background-color:rgb(60 60 60);
   color: #ffff;
   list-style-type: none;
+  cursor: pointer;
+}
+.btn:hover {
+  background-color: rgb(136, 136, 136);
+}
+
+.btn-special {
+  background-color: rgb(0, 0, 0); ;
 }
 
 .Space {
-    min-width: 300px;
+    min-width: 285px;
+}
+.active {
+    animation: push;
+    animation-duration: 0.2s;
+    animation-fill-mode: forwards;
+}
+
+.lowerCase {
+  display: block;
+  color: rgb(255, 37, 37);
 }
 
 
-
-.none {
+.upperCase {
   display: none;
 }
+.description,  .language {
+    text-align: center;
+    margin: 0;
+}
 
+@keyframes push {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    100% {
+        transform: scale(0.9);
+        opacity: 0.9;
+        background-color: rgb(136, 136, 136);
+        color: rgb(22, 22, 22);
+    }
+  }
+  
+  @keyframes release {
+    0% {
+        transform: scale(0.9);
+        opacity: 0.9;
+        background-color: rgb(136, 136, 136);
+        color: rgb(22, 22, 22);
+      }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+  }

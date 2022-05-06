@@ -250,7 +250,7 @@ export const keyBase = {
         keySpecial: "",
       },
       {
-        code: "KeyQuote",
+        code: "Quote",
         value: "'",
         valueShift: '"',
         keySpecial: "",
@@ -377,6 +377,12 @@ export const keyBase = {
         keySpecial: "AltRight",
       },
       {
+        code: "ControlRight",
+        value: "Ctrl",
+        valueShift: "Ctrl",
+        keySpecial: "ControlRight",
+      },
+      {
         code: "ArrowLeft",
         value: "◄",
         valueShift: "◄",
@@ -393,13 +399,7 @@ export const keyBase = {
         value: "►",
         valueShift: "►",
         keySpecial: "",
-      },
-      {
-        code: "ControlRight",
-        value: "Ctrl",
-        valueShift: "Ctrl",
-        keySpecial: "ControlRight",
-      },
+      },    
     ],
   ],
   //row 0 Ru
@@ -652,7 +652,7 @@ export const keyBase = {
         keySpecial: "",
       },
       {
-        code: "KeyQuote",
+        code: "Quote",
         value: "э",
         valueShift: "Э",
         keySpecial: "",
@@ -779,6 +779,12 @@ export const keyBase = {
         keySpecial: "AltRight",
       },
       {
+        code: "ControlRight",
+        value: "Ctrl",
+        valueShift: "Ctrl",
+        keySpecial: "ControlRight",
+      },
+      {
         code: "ArrowLeft",
         value: "◄",
         valueShift: "◄",
@@ -796,12 +802,7 @@ export const keyBase = {
         valueShift: "►",
         keySpecial: "",
       },
-      {
-        code: "ControlRight",
-        value: "Ctrl",
-        valueShift: "Ctrl",
-        keySpecial: "ControlRight",
-      },
+   
     ],
   ],
 };
