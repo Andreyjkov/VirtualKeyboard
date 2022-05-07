@@ -64,6 +64,12 @@ section {
 .Enter {  
   padding: 10px 30px;
 }
+.ShiftLeft {
+  padding: 10px 30px;
+}
+.ShiftRight {
+  padding: 10px 8px;
+}
 .active {
     animation: push;
     animation-duration: 0.2s;

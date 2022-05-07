@@ -66,12 +66,11 @@ const capsSwichRemove = (nodeArr) => {
     el.children.item(1).classList.remove("lowerCase");
   });
 };
- //создание поля ввода
+//создание поля ввода
 const textarea = document.createElement("textarea");
-const renderTextarea = () => {  
-  textarea.id = "textarea";  
+const renderTextarea = () => {
+  textarea.id = "textarea";
   textarea.setAttribute("rows", "10");
-  // textarea.focus()
   return textarea;
 };
 
@@ -84,6 +83,40 @@ const input = (val) => {
   position += 1;
   textarea.selectionStart = position;
   textarea.selectionEnd = position;
+  setTimeout(() => {
+    textarea.focus();
+  }, 0);
+};
+
+const backspaceOut = () => {
+  let position = textarea.selectionStart;
+  if (position === 0) {
+    return;
+  }
+  const text = textarea.value;
+  const array = text.split("");
+  array.splice(position - 1, 1);
+  textarea.value = array.join("");
+  position += -1;
+  textarea.selectionStart = position;
+  textarea.selectionEnd = position;
+  setTimeout(() => {
+    textarea.focus();
+  }, 0);
+};
+
+const deleteOut = () => {
+  let position = textarea.selectionStart;
+  const text = textarea.value;
+  const array = text.split("");
+  array.splice(position, 1);
+  textarea.value = array.join("");
+  position += 0;
+  textarea.selectionStart = position;
+  textarea.selectionEnd = position;
+  setTimeout(() => {
+    textarea.focus();
+  }, 0);
 };
 
 const renderKeyBoard = () => {
@@ -100,11 +133,6 @@ const renderKeyBoard = () => {
       return row.appendChild(btnEl.generateBtn());
     });
   });
-  // const displayTextarea = document.querySelector("textarea")
-  // console.log(displayTextarea);
-  // displayTextarea.focus()
-//  console.log(textarea.focus());
-//  textarea.focus
   let allButtons = document.querySelectorAll(".btn");
 
   // Мышь, кнопка ВНИЗ
@@ -135,6 +163,20 @@ const renderKeyBoard = () => {
         input("\n");
         return;
       }
+      if (target.classList.contains("Backspace")) {
+        classActive(target);
+        setTimeout(() => {
+          backspaceOut();
+        }, 0);
+        return;
+      }
+      if (target.classList.contains("Delete")) {
+        classActive(target);
+        setTimeout(() => {
+          deleteOut();
+        }, 0);
+        return;
+      }
       if (target.classList.contains("btn")) {
         if (target.classList.contains("btn-special")) {
           input("");
@@ -149,7 +191,7 @@ const renderKeyBoard = () => {
       if (!target.classList.contains("btn")) {
         if (target.parentElement.classList.contains("btn-special")) {
           classActive(target.parentElement);
-          input("");          
+          input("");
         } else {
           classActive(target.parentElement);
           input(target.innerText);
@@ -193,6 +235,20 @@ const renderKeyBoard = () => {
         if (el.classList.contains("Enter")) {
           classActive(el);
           input("\n");
+          return;
+        }
+        if (el.classList.contains("Backspace")) {
+          classActive(el);
+          setTimeout(() => {
+            backspaceOut();
+          }, 0);
+          return;
+        }
+        if (el.classList.contains("Delete")) {
+          classActive(el);
+          setTimeout(() => {
+            deleteOut();
+          }, 0);
           return;
         }
         if (el.classList.contains("ArrowLeft")) {
@@ -241,7 +297,8 @@ const renderKeyBoard = () => {
         }
       }
     });
-        // переключения языка
+
+    // переключения языка
     const switchLanguage = () => {
       if (language === "eng") {
         language = "ru";
@@ -298,14 +355,3 @@ const init = () => {
   );
 };
 init();
-
-// let a = window.localStorage;
-// console.log(a);
-// const lowerCase = document.querySelector(".lowerCase");
-// const upperCase = document.querySelector(".upperCase");
-// const BTN = document.querySelectorAll(".btn");
-// lowerCase.classList.remove(".lowerCase")
-// console.log(BTN);
-// console.log(upperCase);
-// console.log(document.querySelector(".lowerCase").classList);
-// console.log();
