@@ -57,9 +57,12 @@ section {
 .btn-special {
   background-color: rgb(0, 0, 0); ;
 }
-
+/* кнопки */
 .Space {
     min-width: 285px;
+}
+.Enter {  
+  padding: 10px 30px;
 }
 .active {
     animation: push;

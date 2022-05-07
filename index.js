@@ -66,13 +66,15 @@ const capsSwichRemove = (nodeArr) => {
     el.children.item(1).classList.remove("lowerCase");
   });
 };
-
+ //создание поля ввода
 const textarea = document.createElement("textarea");
-const renderTextarea = () => {
-  textarea.id = "textarea";
+const renderTextarea = () => {  
+  textarea.id = "textarea";  
   textarea.setAttribute("rows", "10");
+  // textarea.focus()
   return textarea;
 };
+
 const input = (val) => {
   let position = textarea.selectionStart;
   const text = textarea.value;
@@ -98,19 +100,12 @@ const renderKeyBoard = () => {
       return row.appendChild(btnEl.generateBtn());
     });
   });
-
+  // const displayTextarea = document.querySelector("textarea")
+  // console.log(displayTextarea);
+  // displayTextarea.focus()
+//  console.log(textarea.focus());
+//  textarea.focus
   let allButtons = document.querySelectorAll(".btn");
-
-  //Клавиатура,кнопка ВЕРХ
-
-  const keyUpListener = (e) => {
-    if (e.code === "ShiftLeft" || e.code === "ShiftRight") {
-      capsSwichRemove(allButtons);
-    }
-    allButtons.forEach((el) => {
-      classRemoveActive(el);
-    });
-  };
 
   // Мышь, кнопка ВНИЗ
 
@@ -121,13 +116,25 @@ const renderKeyBoard = () => {
         target.classList.contains("ShiftLeft") ||
         target.classList.contains("ShiftRight")
       ) {
+        classActive(target);
         capsSwichAdd(allButtons);
       }
 
       if (target.classList.contains("Space")) {
+        classActive(target);
         input(" ");
         return;
-      }     
+      }
+      if (target.classList.contains("Tab")) {
+        classActive(target);
+        input("    ");
+        return;
+      }
+      if (target.classList.contains("Enter")) {
+        classActive(target);
+        input("\n");
+        return;
+      }
       if (target.classList.contains("btn")) {
         if (target.classList.contains("btn-special")) {
           input("");
@@ -139,11 +146,10 @@ const renderKeyBoard = () => {
           return;
         }
       }
-      if (!target.classList.contains("btn")) {       
+      if (!target.classList.contains("btn")) {
         if (target.parentElement.classList.contains("btn-special")) {
-          input("");
           classActive(target.parentElement);
-          
+          input("");          
         } else {
           classActive(target.parentElement);
           input(target.innerText);
@@ -175,27 +181,37 @@ const renderKeyBoard = () => {
     allButtons.forEach((el) => {
       if (el.classList.contains(e.code)) {
         if (el.classList.contains("Space")) {
-          classActive(el)
+          classActive(el);
           input(" ");
           return;
         }
+        if (el.classList.contains("Tab")) {
+          classActive(el);
+          input("    ");
+          return;
+        }
+        if (el.classList.contains("Enter")) {
+          classActive(el);
+          input("\n");
+          return;
+        }
         if (el.classList.contains("ArrowLeft")) {
-          classActive(el)
+          classActive(el);
           input("◄");
           return;
         }
         if (el.classList.contains("ArrowRight")) {
-          classActive(el)
+          classActive(el);
           input("►");
           return;
         }
         if (el.classList.contains("ArrowUp")) {
-          classActive(el)
+          classActive(el);
           input("▲");
           return;
         }
         if (el.classList.contains("ArrowDown")) {
-          classActive(el)
+          classActive(el);
           input("▼");
           return;
         }
@@ -225,7 +241,7 @@ const renderKeyBoard = () => {
         }
       }
     });
-
+        // переключения языка
     const switchLanguage = () => {
       if (language === "eng") {
         language = "ru";
@@ -253,6 +269,18 @@ const renderKeyBoard = () => {
     };
     pushKeyLanguage();
   };
+
+  //Клавиатура,кнопка ВЕРХ
+
+  const keyUpListener = (e) => {
+    if (e.code === "ShiftLeft" || e.code === "ShiftRight") {
+      capsSwichRemove(allButtons);
+    }
+    allButtons.forEach((el) => {
+      classRemoveActive(el);
+    });
+  };
+
   document.removeEventListener("keydown", keyDownListener);
   document.addEventListener("keydown", keyDownListener);
   document.removeEventListener("keyup", keyUpListener);
@@ -270,15 +298,6 @@ const init = () => {
   );
 };
 init();
-
-
-
-
-
-
-
-
-
 
 // let a = window.localStorage;
 // console.log(a);
