@@ -48,7 +48,7 @@ section {
   background-color:rgb(60 60 60);
   color: #ffff;
   list-style-type: none;
-  cursor: pointer;
+  cursor: pointer;  
 }
 .btn:hover {
   background-color: rgb(136, 136, 136);
@@ -94,6 +94,7 @@ section {
 .description,  .language {
     text-align: center;
     margin: 0;
+    font-size: 20px;
 }
 
 @keyframes push {

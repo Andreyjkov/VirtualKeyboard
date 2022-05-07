@@ -718,7 +718,7 @@ export const keyBase = {
         code: "Comma",
         value: "б",
         valueShift: "Б",
-        keySpecial: "",
+        keySpecial: "",        
       },
       {
         code: "Period",

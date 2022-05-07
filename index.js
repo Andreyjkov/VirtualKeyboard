@@ -19,7 +19,6 @@ const classRemoveActive = (node) => {
 
 let language = "";
 const lng = window.localStorage.getItem("lng");
-// console.log(lng);
 if (lng === null) {
   window.localStorage.setItem("lng", "eng");
   language = "eng";
@@ -50,6 +49,7 @@ class Button {
     return btn;
   }
 }
+// шифт
 const capsSwichAdd = (nodeArr) => {
   nodeArr.forEach((el) => {
     el.children.item(0).classList.add("upperCase");
@@ -58,6 +58,7 @@ const capsSwichAdd = (nodeArr) => {
     el.children.item(1).classList.remove("upperCase");
   });
 };
+// убираем шифт
 const capsSwichRemove = (nodeArr) => {
   nodeArr.forEach((el) => {
     el.children.item(0).classList.add("lowerCase");
@@ -87,7 +88,7 @@ const input = (val) => {
     textarea.focus();
   }, 0);
 };
-
+//backspace key
 const backspaceOut = () => {
   let position = textarea.selectionStart;
   if (position === 0) {
@@ -104,7 +105,7 @@ const backspaceOut = () => {
     textarea.focus();
   }, 0);
 };
-
+// del key
 const deleteOut = () => {
   let position = textarea.selectionStart;
   const text = textarea.value;
@@ -118,7 +119,20 @@ const deleteOut = () => {
     textarea.focus();
   }, 0);
 };
-
+const tab = () => {
+  let position = textarea.selectionStart;
+  const text = textarea.value;
+  const array = text.split("");
+  array.splice(position, 0, "    ");
+  textarea.value = array.join("");
+  position += 4;
+  textarea.selectionStart = position;
+  textarea.selectionEnd = position;
+  setTimeout(() => {
+    textarea.focus();
+  }, 0);
+};
+//заполнение клавиатуры
 const renderKeyBoard = () => {
   keyBoard.remove();
   main.appendChild(keyBoard);
@@ -133,19 +147,70 @@ const renderKeyBoard = () => {
       return row.appendChild(btnEl.generateBtn());
     });
   });
+
   let allButtons = document.querySelectorAll(".btn");
 
   // Мышь, кнопка ВНИЗ
-
   allButtons.forEach((el) => {
     const mouseDownListener = (e) => {
+      // console.log(e);
       let target = e.target;
       if (
         target.classList.contains("ShiftLeft") ||
+        target.parentElement.classList.contains("ShiftLeft") ||
+        target.parentElement.classList.contains("ShiftRight") ||
         target.classList.contains("ShiftRight")
       ) {
-        classActive(target);
+        if (
+          target.classList.contains("ShiftLeft") ||
+          target.classList.contains("ShiftRight")
+        ) {
+          classActive(target);
+        }
+        if (
+          target.parentElement.classList.contains("ShiftLeft") ||
+          target.parentElement.classList.contains("ShiftRight")
+        ) {
+          classActive(target.parentElement);
+        }
         capsSwichAdd(allButtons);
+      }
+      if (
+        target.classList.contains("CapsLock") ||
+        target.parentElement.classList.contains("CapsLock")
+      ) {
+        if (
+          target.classList.contains("active") ||
+          target.parentElement.classList.contains("active")
+        ) {
+          setTimeout(() => {
+            classRemoveActive(target);
+            classRemoveActive(target.parentElement);
+          }, 0);
+
+          allButtons.forEach((el, i) => {
+            if (!el.classList.contains("btn-special")) {
+              allButtons[i].children.item(0).innerText = el.children
+                .item(0)
+                .innerText.toLowerCase();
+              allButtons[i].children.item(1).innerText = el.children
+                .item(1)
+                .innerText.toUpperCase();
+            }
+          });
+          console.log(111, target);
+        } else {
+          allButtons.forEach((el, i) => {
+            if (!el.classList.contains("btn-special")) {
+              allButtons[i].children.item(0).innerText = el.children
+                .item(0)
+                .innerText.toUpperCase();
+              allButtons[i].children.item(1).innerText = el.children
+                .item(1)
+                .innerText.toLowerCase();
+            }
+          });
+        }
       }
 
       if (target.classList.contains("Space")) {
@@ -190,8 +255,7 @@ const renderKeyBoard = () => {
       }
       if (!target.classList.contains("btn")) {
         if (target.parentElement.classList.contains("btn-special")) {
-          classActive(target.parentElement);
-          input("");
+          classActive(target.parentElement);        
         } else {
           classActive(target.parentElement);
           input(target.innerText);
@@ -200,26 +264,24 @@ const renderKeyBoard = () => {
       }
     };
     el.addEventListener("mousedown", mouseDownListener);
-
     // Мышь, кнопка ВЕРХ
-
-    el.addEventListener("mouseup", () => {
-      allButtons.forEach((elMouseup) => {
-        classRemoveActive(elMouseup);
-        capsSwichRemove(allButtons);
+    el.addEventListener("mouseup", () => {      
+      allButtons.forEach((elMouseup) => {        
+        if (elMouseup.classList.contains("CapsLock")) {
+        } else {
+          classRemoveActive(elMouseup);         
+        }
       });
+      capsSwichRemove(allButtons);
     });
   });
-
   //Клавиатура,кнопка ВНИЗ
-
   const keyDownListener = (e) => {
     e.preventDefault();
     console.log(e.code);
     if (e.code === "ShiftLeft" || e.code === "ShiftRight") {
       capsSwichAdd(allButtons);
     }
-
     allButtons.forEach((el) => {
       if (el.classList.contains(e.code)) {
         if (el.classList.contains("Space")) {
@@ -229,7 +291,7 @@ const renderKeyBoard = () => {
         }
         if (el.classList.contains("Tab")) {
           classActive(el);
-          input("    ");
+          tab();
           return;
         }
         if (el.classList.contains("Enter")) {
@@ -271,7 +333,6 @@ const renderKeyBoard = () => {
           input("▼");
           return;
         }
-
         if (
           el.classList.contains("Tab") ||
           el.classList.contains("CapsLock") ||
@@ -297,7 +358,6 @@ const renderKeyBoard = () => {
         }
       }
     });
-
     // переключения языка
     const switchLanguage = () => {
       if (language === "eng") {
@@ -326,25 +386,22 @@ const renderKeyBoard = () => {
     };
     pushKeyLanguage();
   };
-
   //Клавиатура,кнопка ВЕРХ
-
   const keyUpListener = (e) => {
     if (e.code === "ShiftLeft" || e.code === "ShiftRight") {
       capsSwichRemove(allButtons);
     }
+
     allButtons.forEach((el) => {
       classRemoveActive(el);
     });
   };
-
   document.removeEventListener("keydown", keyDownListener);
   document.addEventListener("keydown", keyDownListener);
   document.removeEventListener("keyup", keyUpListener);
   document.addEventListener("keyup", keyUpListener);
   return keyBoard;
 };
-
 const init = () => {
   document.body.appendChild(main);
   main.appendChild(renderTextarea());
