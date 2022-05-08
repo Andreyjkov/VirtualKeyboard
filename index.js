@@ -198,7 +198,7 @@ const renderKeyBoard = () => {
                 .innerText.toUpperCase();
             }
           });
-          console.log(111, target);
+          // console.log(111, target);
         } else {
           allButtons.forEach((el, i) => {
             if (!el.classList.contains("btn-special")) {
@@ -255,7 +255,7 @@ const renderKeyBoard = () => {
       }
       if (!target.classList.contains("btn")) {
         if (target.parentElement.classList.contains("btn-special")) {
-          classActive(target.parentElement);        
+          classActive(target.parentElement);
         } else {
           classActive(target.parentElement);
           input(target.innerText);
@@ -265,11 +265,11 @@ const renderKeyBoard = () => {
     };
     el.addEventListener("mousedown", mouseDownListener);
     // Мышь, кнопка ВЕРХ
-    el.addEventListener("mouseup", () => {      
-      allButtons.forEach((elMouseup) => {        
+    el.addEventListener("mouseup", () => {
+      allButtons.forEach((elMouseup) => {
         if (elMouseup.classList.contains("CapsLock")) {
         } else {
-          classRemoveActive(elMouseup);         
+          classRemoveActive(elMouseup);
         }
       });
       capsSwichRemove(allButtons);
@@ -292,6 +292,40 @@ const renderKeyBoard = () => {
         if (el.classList.contains("Tab")) {
           classActive(el);
           tab();
+          return;
+        }
+        if (el.classList.contains("CapsLock")) {
+          allButtons.forEach((el) => {
+            if (el.classList.contains("CapsLock")) {
+              if (el.classList.contains("active")) {
+                setTimeout(() => {
+                  classRemoveActive(el);
+                }, 0);
+                allButtons.forEach((el, i) => {
+                  if (!el.classList.contains("btn-special")) {
+                    allButtons[i].children.item(0).innerText = el.children
+                      .item(0)
+                      .innerText.toLowerCase();
+                    allButtons[i].children.item(1).innerText = el.children
+                      .item(1)
+                      .innerText.toUpperCase();
+                  }
+                });
+              } else {
+                allButtons.forEach((el, i) => {
+                  if (!el.classList.contains("btn-special")) {
+                    allButtons[i].children.item(0).innerText = el.children
+                      .item(0)
+                      .innerText.toUpperCase();
+                    allButtons[i].children.item(1).innerText = el.children
+                      .item(1)
+                      .innerText.toLowerCase();
+                  }
+                });
+              }
+            }
+          });
+          classActive(el);
           return;
         }
         if (el.classList.contains("Enter")) {
@@ -393,7 +427,11 @@ const renderKeyBoard = () => {
     }
 
     allButtons.forEach((el) => {
-      classRemoveActive(el);
+      if (el.classList.contains("CapsLock")) {
+      } else {
+        classRemoveActive(el);
+      }
+      // classRemoveActive(el);
     });
   };
   document.removeEventListener("keydown", keyDownListener);
