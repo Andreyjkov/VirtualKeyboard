@@ -1,5 +1,4 @@
-main {
-  /* border: 2px solid black; */
+main { 
   max-width: 800px;
   display: flex;
   flex-direction: column;
@@ -7,14 +6,10 @@ main {
 }
 
 #textarea {
-    /* display: flex;
-  width: 790px;
-  margin: 0 auto; */
-  /* font-size: 40px; */
+  border-radius: 5px;
   border: 2px solid black;
   display: block;
   width: 770px;
-  /* height: 200px; */
   margin: 10px auto 10px;
   padding: 10px;
   font-size: 18px;
@@ -27,7 +22,9 @@ section {
   margin: 5px;
   border: 2px solid black;
   max-width: 800px;
-  /* background-color: aqua; */
+  border-radius: 10px;
+  background-color:#808080;
+ 
 }
 
 .row {
@@ -75,13 +72,6 @@ section {
     animation-duration: 0.2s;
     animation-fill-mode: forwards;
 }
-
-.activeSpecial {
-  animation: push;
-  animation-duration: 0.2s;
-  animation-fill-mode: forwards;
-}
-
 .lowerCase {
   display: block;
   color: rgb(255, 37, 37);
