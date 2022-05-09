@@ -225,7 +225,7 @@ const renderKeyBoard = () => {
         ) {
           classActive(target.parentElement);
         }
-        input('    ');
+        tab();
         return;
       }
       if (
