@@ -1,0 +1,114 @@
+main { 
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+#textarea {
+  border-radius: 5px;
+  border: 2px solid black;
+  display: block;
+  width: 770px;
+  margin: 10px auto 10px;
+  padding: 10px;
+  font-size: 18px;
+  color: #444444;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  border: 2px solid black;
+  max-width: 800px;
+  border-radius: 10px;
+  background-color:#808080;
+ 
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 800px;
+  margin: 0 0;
+  padding: 2px;
+}
+.btn {
+  border-radius: 8px;
+  border: 1.2px solid black;
+  margin: 2px;
+  padding: 10px 5px; 
+  flex: 1;
+  text-align: center;
+  background-color:rgb(60 60 60);
+  color: #ffff;
+  list-style-type: none;
+  cursor: pointer;  
+}
+.btn:hover {
+  background-color: rgb(136, 136, 136);
+}
+
+.btn-special {
+  background-color: rgb(0, 0, 0); ;
+}
+/* кнопки */
+.Space {
+    min-width: 285px;
+}
+.Enter {  
+  padding: 10px 30px;
+}
+.ShiftLeft {
+  padding: 10px 30px;
+}
+.ShiftRight {
+  padding: 10px 8px;
+}
+.active {
+    animation: push;
+    animation-duration: 0.2s;
+    animation-fill-mode: forwards;
+}
+.lowerCase {
+  display: block;
+  color: rgb(255, 37, 37);
+}
+
+
+.upperCase {
+  display: none;
+}
+.description,  .language {
+    text-align: center;
+    margin: 0;
+    font-size: 20px;
+}
+
+@keyframes push {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    100% {
+        transform: scale(0.9);
+        opacity: 0.9;
+        background-color: rgb(136, 136, 136);
+        color: rgb(22, 22, 22);
+    }
+  }
+  
+  @keyframes release {
+    0% {
+        transform: scale(0.9);
+        opacity: 0.9;
+        background-color: rgb(136, 136, 136);
+        color: rgb(22, 22, 22);
+      }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+  }
