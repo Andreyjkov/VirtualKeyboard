@@ -215,7 +215,16 @@ const renderKeyBoard = () => {
         target.classList.contains('Tab')
         || target.parentElement.classList.contains('Tab')
       ) {
-        classActive(target);
+        if (
+          target.classList.contains('Tab')
+        ) {
+          classActive(target);
+        }
+        if (
+          target.parentElement.classList.contains('Tab')
+        ) {
+          classActive(target.parentElement);
+        }
         input('    ');
         return;
       }
@@ -223,7 +232,16 @@ const renderKeyBoard = () => {
         target.classList.contains('Enter')
         || target.parentElement.classList.contains('Enter')
       ) {
-        classActive(target);
+        if (
+          target.classList.contains('Enter')
+        ) {
+          classActive(target);
+        }
+        if (
+          target.parentElement.classList.contains('Enter')
+        ) {
+          classActive(target.parentElement);
+        }
         input('\n');
         return;
       }
@@ -231,7 +249,16 @@ const renderKeyBoard = () => {
         target.classList.contains('Backspace')
         || target.parentElement.classList.contains('Backspace')
       ) {
-        classActive(target);
+        if (
+          target.classList.contains('Backspace')
+        ) {
+          classActive(target);
+        }
+        if (
+          target.parentElement.classList.contains('Backspace')
+        ) {
+          classActive(target.parentElement);
+        }
         setTimeout(() => {
           backspaceOut();
         }, 0);
@@ -241,7 +268,16 @@ const renderKeyBoard = () => {
         target.classList.contains('Delete')
         || target.parentElement.classList.contains('Delete')
       ) {
-        classActive(target);
+        if (
+          target.classList.contains('Delete')
+        ) {
+          classActive(target);
+        }
+        if (
+          target.parentElement.classList.contains('Delete')
+        ) {
+          classActive(target.parentElement);
+        }
         setTimeout(() => {
           deleteOut();
         }, 0);
